@@ -1,0 +1,22 @@
+[tool.poetry]
+name = "homework22"
+version = "0.1.0"
+description = ""
+authors = ["Ataraksia <1509lisavi@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+django = "^5.1.4"
+psycopg2-binary = "^2.9.10"
+psycopg2 = "^2.9.10"
+psycopg = "^3.2.3"
+python-dotenv = "^1.0.1"
+black = "^24.10.0"
+pillow = "^11.0.0"
+ipython = "^8.30.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
