@@ -6,9 +6,15 @@ from catalog.models import Product
 
 class HomeView(ListView):
     model = Product
-    template_name = 'catalog/base.html'
+    template_name = 'catalog/home.html'
 
 
 class ProductInfoView(DetailView):
     model = Product
     template_name = 'catalog/product_info.html'
+
+
+class ContactsView(ListView):
+    model = Product
+    template_name = 'catalog/contacts.html'
+

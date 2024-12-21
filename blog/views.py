@@ -14,9 +14,15 @@ class PostListView(ListView):
         return Post.objects.filter(is_published=True)
 
 
-def post_detail(request, pk):
-    post = get_object_or_404(Post, pk=pk)
-    return render(request, 'blog/post_detail.html', {'post': post})
+class PostDetailView(DetailView):
+    model = Post
+    template_name = 'blog/post_detail.html'
+
+    def get_object(self):
+        post = super().get_object()
+        post.view_counter += 1
+        post.save()
+        return post
 
 
 class PostCreateView(CreateView):
