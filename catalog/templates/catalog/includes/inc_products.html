@@ -13,6 +13,9 @@
                 <a class="btn btn-primary" href="{% url 'catalog:product_info' product.pk %}">Купить</a>
               </div>
             </div>
+            <li>
+                <a href="{% url 'catalog:product_info' product.pk %}"></a> (Просмотров: {{ product.view_counter }})
+            </li>
           </div>
         </div>
       </div>

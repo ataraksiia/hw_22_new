@@ -56,11 +56,15 @@ class Product(models.Model):
     )
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+    view_counter = models.PositiveIntegerField(default=0)
 
     class Meta:
         verbose_name = "Продукт"
         verbose_name_plural = "Продукты"
         ordering = ["category"]
+        permissions = [
+            ('can_edit_name', 'can edit name'),
+            ('can_edit_descriptions', 'can edit descriptions'),]
 
     def __str__(self):
         return self.name

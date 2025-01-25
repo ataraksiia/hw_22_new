@@ -98,11 +98,15 @@
         <p class="lead text-body-secondary">С наступающим! Скидки 100%</p>
         <a href="{% url 'blog:post_list' %}" class="text-white">Блог</a>
       </div>
+      <a href="{% url 'catalog:product_create' %}" class="text-white">Добавить новый продукт</a>
     </div>
   </section>
 </main>
 
 {% block product %}
+{% endblock %}
+
+{% block content %}
 {% endblock %}
 
 {% block basement %}
