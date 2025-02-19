@@ -9,10 +9,10 @@ forbidden_words = [
 ]
 
 
-class ProductModeratorForm(forms.ModelForm):
+class ProductModeratorForm(ModelForm):
     class Meta:
         model = Product
-        fields = ['name', 'description', 'category', 'category', 'price']
+        fields = ['flag_public']
 
 
 class ProductForm(ModelForm):

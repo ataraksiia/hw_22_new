@@ -1,5 +1,7 @@
 from django.db import models
 
+from users.models import User
+
 
 # Create your models here.
 class Category(models.Model):
@@ -29,6 +31,9 @@ class Product(models.Model):
         verbose_name="Наименование",
         help_text="Введите наименование продукта",
     )
+    owner = models.ForeignKey(User, verbose_name="Владелец", help_text="Укажите владельца", blank=True, null=True,
+                              on_delete=models.SET_NULL)
+
     description = models.TextField(
         verbose_name="Описание", help_text="Введите описание продукта"
     )
@@ -64,8 +69,9 @@ class Product(models.Model):
         verbose_name_plural = "Продукты"
         ordering = ["category"]
         permissions = [
-            ('can_edit_name', 'can edit name'),
-            ('can_edit_descriptions', 'can edit descriptions'),]
+            ('can_unpublish_product', 'can unpublish product'),
+            ('can_delete_product', 'can delete product'),
+        ]
 
     def __str__(self):
         return self.name

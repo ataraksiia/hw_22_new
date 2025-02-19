@@ -3,6 +3,7 @@
   <div class="container">
     <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
       {% for product in object_list %}
+      {% if user == product.owner or perms.catalog.can_unpublish_product or product.flag_public == True %}
       <div class="col">
         <div class="card shadow-sm">
           <img height=480px" width="420px" src="{{ product.img | media_filter }}">
@@ -19,6 +20,7 @@
           </div>
         </div>
       </div>
+      {% endif %}
       {% endfor %}
     </div>
   </div>
