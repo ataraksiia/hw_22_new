@@ -1,5 +1,7 @@
 from django.db import models
 
+from users.models import User
+
 
 # Create your models here.
 class Category(models.Model):
@@ -18,6 +20,7 @@ class Category(models.Model):
     class Meta:
         verbose_name = "Категория"
         verbose_name_plural = "Категории"
+        ordering = ["name", "description"]
 
     def __str__(self):
         return self.name
@@ -29,6 +32,9 @@ class Product(models.Model):
         verbose_name="Наименование",
         help_text="Введите наименование продукта",
     )
+    owner = models.ForeignKey(User, verbose_name="Владелец", help_text="Укажите владельца", blank=True, null=True,
+                              on_delete=models.SET_NULL)
+
     description = models.TextField(
         verbose_name="Описание", help_text="Введите описание продукта"
     )
@@ -56,11 +62,17 @@ class Product(models.Model):
     )
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+    view_counter = models.PositiveIntegerField(default=0)
+    flag_public = models.BooleanField(default=False)
 
     class Meta:
         verbose_name = "Продукт"
         verbose_name_plural = "Продукты"
         ordering = ["category"]
+        permissions = [
+            ('can_unpublish_product', 'can unpublish product'),
+            ('can_delete_product', 'can delete product'),
+        ]
 
     def __str__(self):
         return self.name
